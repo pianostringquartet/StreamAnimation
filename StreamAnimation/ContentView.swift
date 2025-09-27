@@ -18,7 +18,7 @@ struct ContentView: View {
 
             // Draw edges first (behind nodes)
             ForEach(graph.edges) { edge in
-                EdgeView(edge: edge, graph: graph)
+                EdgeView(edge: edge)
             }
 
             // Draw nodes
@@ -51,86 +51,88 @@ class GraphModel {
         let nodeB = NodeModel(id: "B", position: CGPoint(x: 400, y: 350))
         nodes = [nodeA, nodeB]
 
-        // Start with initial edge - no position capture at creation time
+        // Start with initial edge
         let initialEdge = EdgeModel(fromNodeID: "A", toNodeID: "B")
         edges = [initialEdge]
+
+        // Initialize edge's animated points to current positions
+        initialEdge.initializeAnimatedPoints(graph: self)
     }
 
     func randomizeGraph() {
-        withAnimation(.linear(duration: 0.3)) {
-            // Determine which nodes will remain
-            let newNodeCount = Int.random(in: 2...6)
-            let keepExistingNodes = min(newNodeCount, nodes.count)
-            let nodesToKeep = Array(nodes.prefix(keepExistingNodes))
-            let nodeIDsToKeep = Set(nodesToKeep.map { $0.id })
+        // PHASE 1 (0.0-0.1s): Retract all edges
+        for edge in edges {
+            edge.retract()
+        }
 
-            // Mark edges for removal and set up collapse animations
-            for edge in edges {
-                let fromNodeExists = nodeIDsToKeep.contains(edge.fromNodeID)
-                let toNodeExists = nodeIDsToKeep.contains(edge.toNodeID)
+        // PHASE 2 (0.5-1.0s): Reposition nodes
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.linear(duration: 0.5)) {
+                // Determine which nodes will remain
+                let newNodeCount = Int.random(in: 2...6)
+                let keepExistingNodes = min(newNodeCount, self.nodes.count)
+                let nodesToKeep = Array(self.nodes.prefix(keepExistingNodes))
+                let nodeIDsToKeep = Set(nodesToKeep.map { $0.id })
 
-                if !fromNodeExists && !toNodeExists {
-                    // Both nodes disappearing - collapse to center
-                    edge.setupCenterCollapse(graph: self)
-                } else if !fromNodeExists {
-                    // From node disappearing - collapse to destination
-                    edge.setupCollapseToDestination(graph: self)
-                } else if !toNodeExists {
-                    // To node disappearing - collapse to source
-                    edge.setupCollapseToSource(graph: self)
+                // Update nodes - reposition existing, add new ones
+                var newNodes: [NodeModel] = []
+
+                // Keep some existing nodes and reposition them
+                for node in nodesToKeep {
+                    node.position = self.randomPosition()
+                    newNodes.append(node)
                 }
-            }
 
-            // Update nodes - reposition existing, add new ones
-            var newNodes: [NodeModel] = []
+                // Add new nodes
+                for _ in newNodes.count..<newNodeCount {
+                    let nodeID = self.availableNodeID()
+                    let newNode = NodeModel(id: nodeID, position: self.randomPosition())
+                    newNodes.append(newNode)
+                }
 
-            // Keep some existing nodes and reposition them
-            for node in nodesToKeep {
-                node.position = randomPosition()
-                newNodes.append(node)
-            }
+                self.nodes = newNodes
 
-            // Add new nodes
-            for _ in newNodes.count..<newNodeCount {
-                let nodeID = availableNodeID()
-                let newNode = NodeModel(id: nodeID, position: randomPosition())
-                newNodes.append(newNode)
-            }
-
-            nodes = newNodes
-
-            // Remove edges that should be gone (after animation completes)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                // Remove edges whose nodes are gone
                 self.edges.removeAll { edge in
                     let fromExists = nodeIDsToKeep.contains(edge.fromNodeID)
                     let toExists = nodeIDsToKeep.contains(edge.toNodeID)
                     return !fromExists || !toExists
                 }
+
+                // Create new edges
+                let edgeCount = Int.random(in: 1...min(4, newNodes.count - 1))
+                for _ in 0..<edgeCount {
+                    guard let fromNode = newNodes.randomElement() else { continue }
+
+                    // Filter out same node and nodes too close together
+                    let validTargets = newNodes.filter { targetNode in
+                        targetNode.id != fromNode.id &&
+                        abs(targetNode.position.x - fromNode.position.x) >= 100
+                    }
+
+                    guard let toNode = validTargets.randomElement() else { continue }
+
+                    // Avoid duplicate edges
+                    let edgeExists = self.edges.contains { edge in
+                        (edge.fromNodeID == fromNode.id && edge.toNodeID == toNode.id) ||
+                        (edge.fromNodeID == toNode.id && edge.toNodeID == fromNode.id)
+                    }
+
+                    if !edgeExists {
+                        let newEdge = EdgeModel(fromNodeID: fromNode.id, toNodeID: toNode.id)
+                        // Initialize at retracted state (from point = to point)
+                        newEdge.animatedFromPoint = fromNode.outputAnchor
+                        newEdge.animatedToPoint = fromNode.outputAnchor
+                        self.edges.append(newEdge)
+                    }
+                }
             }
+        }
 
-            // Add some random new edges
-            let edgeCount = Int.random(in: 1...min(4, newNodes.count - 1))
-            for _ in 0..<edgeCount {
-                guard let fromNode = newNodes.randomElement() else { continue }
-
-                // Filter out same node and nodes too close together
-                let validTargets = newNodes.filter { targetNode in
-                    targetNode.id != fromNode.id &&
-                    abs(targetNode.position.x - fromNode.position.x) >= 100 // Minimum distance
-                }
-
-                guard let toNode = validTargets.randomElement() else { continue }
-
-                // Avoid duplicate edges
-                let edgeExists = edges.contains { edge in
-                    (edge.fromNodeID == fromNode.id && edge.toNodeID == toNode.id) ||
-                    (edge.fromNodeID == toNode.id && edge.toNodeID == fromNode.id)
-                }
-
-                if !edgeExists {
-                    let newEdge = EdgeModel(fromNodeID: fromNode.id, toNodeID: toNode.id)
-                    edges.append(newEdge)
-                }
+        // PHASE 3 (1.0-1.5s): Extend all edges
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            for edge in self.edges {
+                edge.extend(graph: self)
             }
         }
     }
@@ -148,95 +150,46 @@ class EdgeModel: Identifiable {
     let fromNodeID: String
     let toNodeID: String
 
-    // Captured positions for normal operation
-    var normalFromPoint: CGPoint?
-    var normalToPoint: CGPoint?
-
-    // Collapse animation state
-    var collapseFrom: CGPoint?
-    var collapseTo: CGPoint?
-    var isCollapsing = false
+    // Animatable edge points - these drive the visual appearance
+    var animatedFromPoint: CGPoint = CGPoint.zero
+    var animatedToPoint: CGPoint = CGPoint.zero
 
     init(fromNodeID: String, toNodeID: String) {
         self.fromNodeID = fromNodeID
         self.toNodeID = toNodeID
     }
 
-    func captureCurrentPositions(graph: GraphModel) {
-        guard let fromNode = graph.node(withID: fromNodeID),
-              let toNode = graph.node(withID: toNodeID) else { return }
-
-        normalFromPoint = fromNode.outputAnchor
-        normalToPoint = toNode.inputAnchor
+    // Get the current anchor points from the graph
+    func liveFromPoint(graph: GraphModel) -> CGPoint {
+        return graph.node(withID: fromNodeID)?.outputAnchor ?? CGPoint.zero
     }
 
-    func setupCenterCollapse(graph: GraphModel) {
-        // Capture current positions before any nodes are removed
-        captureCurrentPositions(graph: graph)
-
-        guard let normalFrom = normalFromPoint,
-              let normalTo = normalToPoint else { return }
-
-        let centerPoint = CGPoint(
-            x: (normalFrom.x + normalTo.x) / 2,
-            y: (normalFrom.y + normalTo.y) / 2
-        )
-
-        collapseFrom = centerPoint
-        collapseTo = centerPoint
-        isCollapsing = true
+    func liveToPoint(graph: GraphModel) -> CGPoint {
+        return graph.node(withID: toNodeID)?.inputAnchor ?? CGPoint.zero
     }
 
-    func setupCollapseToSource(graph: GraphModel) {
-        // Capture current positions before any nodes are removed
-        captureCurrentPositions(graph: graph)
-
-        guard let normalFrom = normalFromPoint else { return }
-
-        collapseFrom = normalFrom
-        collapseTo = normalFrom
-        isCollapsing = true
+    // Initialize animated points to match current node positions
+    func initializeAnimatedPoints(graph: GraphModel) {
+        animatedFromPoint = liveFromPoint(graph: graph)
+        animatedToPoint = liveToPoint(graph: graph)
     }
 
-    func setupCollapseToDestination(graph: GraphModel) {
-        // Capture current positions before any nodes are removed
-        captureCurrentPositions(graph: graph)
-
-        guard let normalTo = normalToPoint else { return }
-
-        collapseFrom = normalTo
-        collapseTo = normalTo
-        isCollapsing = true
-    }
-
-    func currentFromPoint(graph: GraphModel) -> CGPoint {
-        if isCollapsing, let collapseFrom = collapseFrom {
-            return collapseFrom
+    // Retract: animate to-point toward from-point
+    func retract() {
+        withAnimation(.linear(duration: 0.5)) {
+            animatedToPoint = animatedFromPoint
         }
-
-        // For normal (non-collapsing) edges, always use live node positions
-        if let fromNode = graph.node(withID: fromNodeID) {
-            return fromNode.outputAnchor
-        }
-
-        // If node doesn't exist and we're not collapsing, this is an error state
-        // Should not happen in normal operation
-        return CGPoint.zero
     }
 
-    func currentToPoint(graph: GraphModel) -> CGPoint {
-        if isCollapsing, let collapseTo = collapseTo {
-            return collapseTo
-        }
+    // Extend: animate drawing from source to destination
+    func extend(graph: GraphModel) {
+        // Set source immediately (no animation)
+        animatedFromPoint = liveFromPoint(graph: graph)
 
-        // For normal (non-collapsing) edges, always use live node positions
-        if let toNode = graph.node(withID: toNodeID) {
-            return toNode.inputAnchor
+        // Animate only the destination point from source to target
+        withAnimation(.linear(duration: 0.5)) {
+            animatedToPoint = liveToPoint(graph: graph)
         }
-
-        // If node doesn't exist and we're not collapsing, this is an error state
-        // Should not happen in normal operation
-        return CGPoint.zero
     }
 }
 
@@ -293,15 +246,13 @@ struct NodeView: View {
 
 struct EdgeView: View {
     let edge: EdgeModel
-    let graph: GraphModel
 
     var body: some View {
         AnimatableEdgeLine(
-            from: edge.currentFromPoint(graph: graph),
-            to: edge.currentToPoint(graph: graph)
+            from: edge.animatedFromPoint,
+            to: edge.animatedToPoint
         )
         .stroke(Color.purple, lineWidth: 6)
-        .opacity(edge.isCollapsing ? 0.5 : 1.0)
     }
 }
 

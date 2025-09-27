@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Test Project for Node/Edge Animation Synchronization Issue
 
 struct ContentView: View {
-    @State private var nodeA = NodeModel(id: "A", position: CGPoint(x: 100, y: 200))
-    @State private var nodeB = NodeModel(id: "B", position: CGPoint(x: 400, y: 200))
+    @State private var nodeA = NodeModel(id: "A", position: CGPoint(x: 100, y: 150))
+    @State private var nodeB = NodeModel(id: "B", position: CGPoint(x: 400, y: 350))
 
     var body: some View {
         ZStack {
@@ -27,19 +27,19 @@ struct ContentView: View {
             // Controls
             VStack {
                 Spacer()
-                HStack {
-                    Button("Move Nodes (withAnimation)") {
-                        withAnimation(.linear(duration: 0.3)) {
-                            nodeA.position = CGPoint(x: 150, y: 300)
-                            nodeB.position = CGPoint(x: 350, y: 300)
-                        }
-                    }
+                Button("Animate") {
+                    withAnimation(.linear(duration: 0.3)) {
+                        let posA = CGPoint(
+                            x: Double.random(in: 50...250),
+                            y: Double.random(in: 100...500)
+                        )
+                        let posB = CGPoint(
+                            x: posA.x + Double.random(in: 100...200),
+                            y: Double.random(in: 100...500)
+                        )
 
-                    Button("Reset") {
-                        withAnimation(.linear(duration: 0.3)) {
-                            nodeA.position = CGPoint(x: 100, y: 200)
-                            nodeB.position = CGPoint(x: 400, y: 200)
-                        }
+                        nodeA.position = posA
+                        nodeB.position = posB
                     }
                 }
                 .padding()
@@ -60,7 +60,7 @@ class NodeModel {
         self.position = position
     }
 
-    // Node is 100x100, so input is at -50, output at +50 from center
+    // Node is 100x50, so input is at -50, output at +50 from center
     var inputAnchor: CGPoint {
         CGPoint(x: position.x - 50, y: position.y)
     }
@@ -87,7 +87,7 @@ struct NodeView: View {
     var body: some View {
         Rectangle()
             .fill(Color.blue.opacity(0.7))
-            .frame(width: 100, height: 100)
+            .frame(width: 100, height: 50)
             .position(model.position)
             .overlay(
                 Text(model.id)
@@ -135,10 +135,12 @@ struct AnimatableEdgeLine: Shape {
         Path { path in
             path.move(to: from)
 
-            // Simple curved connection (like Stitch's circuit edges)
-            let midX = (from.x + to.x) / 2
-            let controlPoint1 = CGPoint(x: midX, y: from.y)
-            let controlPoint2 = CGPoint(x: midX, y: to.y)
+            // More pronounced curve - extend control points beyond midpoint
+            let distance = abs(to.x - from.x)
+            let curveStrength = min(distance * 0.6, 150) // Scale curve with distance, max 150
+
+            let controlPoint1 = CGPoint(x: from.x + curveStrength, y: from.y)
+            let controlPoint2 = CGPoint(x: to.x - curveStrength, y: to.y)
 
             path.addCurve(to: to, control1: controlPoint1, control2: controlPoint2)
         }

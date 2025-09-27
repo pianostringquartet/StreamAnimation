@@ -183,10 +183,11 @@ class EdgeModel: Identifiable {
 
     // Extend: animate drawing from source to destination
     func extend(graph: GraphModel) {
-        // Set source immediately (no animation)
+        // Set both points to source position first (reset state)
         animatedFromPoint = liveFromPoint(graph: graph)
+        animatedToPoint = liveFromPoint(graph: graph)
 
-        // Animate only the destination point from source to target
+        // Then animate only the destination point to target
         withAnimation(.linear(duration: 0.5)) {
             animatedToPoint = liveToPoint(graph: graph)
         }

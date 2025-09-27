@@ -14,19 +14,11 @@
 			remoteGlobalIDString = EC60CB322E878EAF00B065F9;
 			remoteInfo = StreamAnimation;
 		};
-		EC60CB4B2E878EB100B065F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EC60CB2B2E878EAF00B065F9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC60CB322E878EAF00B065F9;
-			remoteInfo = StreamAnimation;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EC60CB332E878EAF00B065F9 /* StreamAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StreamAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC60CB402E878EB100B065F9 /* StreamAnimationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreamAnimationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC60CB4A2E878EB100B065F9 /* StreamAnimationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreamAnimationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,11 +30,6 @@
 		EC60CB432E878EB100B065F9 /* StreamAnimationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = StreamAnimationTests;
-			sourceTree = "<group>";
-		};
-		EC60CB4D2E878EB100B065F9 /* StreamAnimationUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = StreamAnimationUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC60CB472E878EB100B065F9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +57,6 @@
 			children = (
 				EC60CB352E878EAF00B065F9 /* StreamAnimation */,
 				EC60CB432E878EB100B065F9 /* StreamAnimationTests */,
-				EC60CB4D2E878EB100B065F9 /* StreamAnimationUITests */,
 				EC60CB342E878EAF00B065F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +66,6 @@
 			children = (
 				EC60CB332E878EAF00B065F9 /* StreamAnimation.app */,
 				EC60CB402E878EB100B065F9 /* StreamAnimationTests.xctest */,
-				EC60CB4A2E878EB100B065F9 /* StreamAnimationUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,29 +118,6 @@
 			productReference = EC60CB402E878EB100B065F9 /* StreamAnimationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EC60CB492E878EB100B065F9 /* StreamAnimationUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC60CB5A2E878EB100B065F9 /* Build configuration list for PBXNativeTarget "StreamAnimationUITests" */;
-			buildPhases = (
-				EC60CB462E878EB100B065F9 /* Sources */,
-				EC60CB472E878EB100B065F9 /* Frameworks */,
-				EC60CB482E878EB100B065F9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EC60CB4C2E878EB100B065F9 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				EC60CB4D2E878EB100B065F9 /* StreamAnimationUITests */,
-			);
-			name = StreamAnimationUITests;
-			packageProductDependencies = (
-			);
-			productName = StreamAnimationUITests;
-			productReference = EC60CB4A2E878EB100B065F9 /* StreamAnimationUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,10 +132,6 @@
 						CreatedOnToolsVersion = 26.0.1;
 					};
 					EC60CB3F2E878EB100B065F9 = {
-						CreatedOnToolsVersion = 26.0.1;
-						TestTargetID = EC60CB322E878EAF00B065F9;
-					};
-					EC60CB492E878EB100B065F9 = {
 						CreatedOnToolsVersion = 26.0.1;
 						TestTargetID = EC60CB322E878EAF00B065F9;
 					};
@@ -202,7 +153,6 @@
 			targets = (
 				EC60CB322E878EAF00B065F9 /* StreamAnimation */,
 				EC60CB3F2E878EB100B065F9 /* StreamAnimationTests */,
-				EC60CB492E878EB100B065F9 /* StreamAnimationUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +166,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EC60CB3E2E878EB100B065F9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC60CB482E878EB100B065F9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,13 +189,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC60CB462E878EB100B065F9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -260,11 +196,6 @@
 			isa = PBXTargetDependency;
 			target = EC60CB322E878EAF00B065F9 /* StreamAnimation */;
 			targetProxy = EC60CB412E878EB100B065F9 /* PBXContainerItemProxy */;
-		};
-		EC60CB4C2E878EB100B065F9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EC60CB322E878EAF00B065F9 /* StreamAnimation */;
-			targetProxy = EC60CB4B2E878EB100B065F9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -525,56 +456,6 @@
 			};
 			name = Release;
 		};
-		EC60CB5B2E878EB100B065F9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 57798878NB;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uiExperiments.StreamAnimationUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = StreamAnimation;
-				XROS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Debug;
-		};
-		EC60CB5C2E878EB100B065F9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 57798878NB;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = uiExperiments.StreamAnimationUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = StreamAnimation;
-				XROS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -601,15 +482,6 @@
 			buildConfigurations = (
 				EC60CB582E878EB100B065F9 /* Debug */,
 				EC60CB592E878EB100B065F9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EC60CB5A2E878EB100B065F9 /* Build configuration list for PBXNativeTarget "StreamAnimationUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EC60CB5B2E878EB100B065F9 /* Debug */,
-				EC60CB5C2E878EB100B065F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -6,6 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EC8849502E8F3E0900BC08FA /* SwiftBasicFormat in Frameworks */ = {isa = PBXBuildFile; productRef = EC88494F2E8F3E0900BC08FA /* SwiftBasicFormat */; };
+		EC8849522E8F3E0900BC08FA /* SwiftCompilerPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849512E8F3E0900BC08FA /* SwiftCompilerPlugin */; };
+		EC8849542E8F3E0900BC08FA /* SwiftDiagnostics in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849532E8F3E0900BC08FA /* SwiftDiagnostics */; };
+		EC8849562E8F3E0900BC08FA /* SwiftIDEUtils in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849552E8F3E0900BC08FA /* SwiftIDEUtils */; };
+		EC8849582E8F3E0900BC08FA /* SwiftIfConfig in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849572E8F3E0900BC08FA /* SwiftIfConfig */; };
+		EC88495A2E8F3E0900BC08FA /* SwiftLexicalLookup in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849592E8F3E0900BC08FA /* SwiftLexicalLookup */; };
+		EC88495C2E8F3E0900BC08FA /* SwiftOperators in Frameworks */ = {isa = PBXBuildFile; productRef = EC88495B2E8F3E0900BC08FA /* SwiftOperators */; };
+		EC88495E2E8F3E0900BC08FA /* SwiftParser in Frameworks */ = {isa = PBXBuildFile; productRef = EC88495D2E8F3E0900BC08FA /* SwiftParser */; };
+		EC8849602E8F3E0900BC08FA /* SwiftParserDiagnostics in Frameworks */ = {isa = PBXBuildFile; productRef = EC88495F2E8F3E0900BC08FA /* SwiftParserDiagnostics */; };
+		EC8849622E8F3E0900BC08FA /* SwiftRefactor in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849612E8F3E0900BC08FA /* SwiftRefactor */; };
+		EC8849642E8F3E0900BC08FA /* SwiftSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849632E8F3E0900BC08FA /* SwiftSyntax */; };
+		EC8849662E8F3E0900BC08FA /* SwiftSyntaxBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849652E8F3E0900BC08FA /* SwiftSyntaxBuilder */; };
+		EC8849682E8F3E0900BC08FA /* SwiftSyntaxMacroExpansion in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849672E8F3E0900BC08FA /* SwiftSyntaxMacroExpansion */; };
+		EC88496A2E8F3E0900BC08FA /* SwiftSyntaxMacros in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849692E8F3E0900BC08FA /* SwiftSyntaxMacros */; };
+		EC88496C2E8F3E0900BC08FA /* SwiftSyntaxMacrosGenericTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = EC88496B2E8F3E0900BC08FA /* SwiftSyntaxMacrosGenericTestSupport */; };
+		EC88496E2E8F3E0900BC08FA /* SwiftSyntaxMacrosTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = EC88496D2E8F3E0900BC08FA /* SwiftSyntaxMacrosTestSupport */; };
+		EC8849702E8F3E0900BC08FA /* _SwiftCompilerPluginMessageHandling in Frameworks */ = {isa = PBXBuildFile; productRef = EC88496F2E8F3E0900BC08FA /* _SwiftCompilerPluginMessageHandling */; };
+		EC8849722E8F3E0900BC08FA /* _SwiftLibraryPluginProvider in Frameworks */ = {isa = PBXBuildFile; productRef = EC8849712E8F3E0900BC08FA /* _SwiftLibraryPluginProvider */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EC60CB412E878EB100B065F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +60,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC8849542E8F3E0900BC08FA /* SwiftDiagnostics in Frameworks */,
+				EC8849662E8F3E0900BC08FA /* SwiftSyntaxBuilder in Frameworks */,
+				EC88496E2E8F3E0900BC08FA /* SwiftSyntaxMacrosTestSupport in Frameworks */,
+				EC8849562E8F3E0900BC08FA /* SwiftIDEUtils in Frameworks */,
+				EC8849582E8F3E0900BC08FA /* SwiftIfConfig in Frameworks */,
+				EC88495C2E8F3E0900BC08FA /* SwiftOperators in Frameworks */,
+				EC8849702E8F3E0900BC08FA /* _SwiftCompilerPluginMessageHandling in Frameworks */,
+				EC8849642E8F3E0900BC08FA /* SwiftSyntax in Frameworks */,
+				EC8849522E8F3E0900BC08FA /* SwiftCompilerPlugin in Frameworks */,
+				EC88496C2E8F3E0900BC08FA /* SwiftSyntaxMacrosGenericTestSupport in Frameworks */,
+				EC88495E2E8F3E0900BC08FA /* SwiftParser in Frameworks */,
+				EC8849502E8F3E0900BC08FA /* SwiftBasicFormat in Frameworks */,
+				EC88495A2E8F3E0900BC08FA /* SwiftLexicalLookup in Frameworks */,
+				EC88496A2E8F3E0900BC08FA /* SwiftSyntaxMacros in Frameworks */,
+				EC8849722E8F3E0900BC08FA /* _SwiftLibraryPluginProvider in Frameworks */,
+				EC8849622E8F3E0900BC08FA /* SwiftRefactor in Frameworks */,
+				EC8849682E8F3E0900BC08FA /* SwiftSyntaxMacroExpansion in Frameworks */,
+				EC8849602E8F3E0900BC08FA /* SwiftParserDiagnostics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +129,24 @@
 			);
 			name = StreamAnimation;
 			packageProductDependencies = (
+				EC88494F2E8F3E0900BC08FA /* SwiftBasicFormat */,
+				EC8849512E8F3E0900BC08FA /* SwiftCompilerPlugin */,
+				EC8849532E8F3E0900BC08FA /* SwiftDiagnostics */,
+				EC8849552E8F3E0900BC08FA /* SwiftIDEUtils */,
+				EC8849572E8F3E0900BC08FA /* SwiftIfConfig */,
+				EC8849592E8F3E0900BC08FA /* SwiftLexicalLookup */,
+				EC88495B2E8F3E0900BC08FA /* SwiftOperators */,
+				EC88495D2E8F3E0900BC08FA /* SwiftParser */,
+				EC88495F2E8F3E0900BC08FA /* SwiftParserDiagnostics */,
+				EC8849612E8F3E0900BC08FA /* SwiftRefactor */,
+				EC8849632E8F3E0900BC08FA /* SwiftSyntax */,
+				EC8849652E8F3E0900BC08FA /* SwiftSyntaxBuilder */,
+				EC8849672E8F3E0900BC08FA /* SwiftSyntaxMacroExpansion */,
+				EC8849692E8F3E0900BC08FA /* SwiftSyntaxMacros */,
+				EC88496B2E8F3E0900BC08FA /* SwiftSyntaxMacrosGenericTestSupport */,
+				EC88496D2E8F3E0900BC08FA /* SwiftSyntaxMacrosTestSupport */,
+				EC88496F2E8F3E0900BC08FA /* _SwiftCompilerPluginMessageHandling */,
+				EC8849712E8F3E0900BC08FA /* _SwiftLibraryPluginProvider */,
 			);
 			productName = StreamAnimation;
 			productReference = EC60CB332E878EAF00B065F9 /* StreamAnimation.app */;
@@ -146,6 +203,9 @@
 			);
 			mainGroup = EC60CB2A2E878EAF00B065F9;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EC60CB342E878EAF00B065F9 /* Products */;
 			projectDirPath = "";
@@ -487,6 +547,110 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftlang/swift-syntax.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 602.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EC88494F2E8F3E0900BC08FA /* SwiftBasicFormat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftBasicFormat;
+		};
+		EC8849512E8F3E0900BC08FA /* SwiftCompilerPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftCompilerPlugin;
+		};
+		EC8849532E8F3E0900BC08FA /* SwiftDiagnostics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftDiagnostics;
+		};
+		EC8849552E8F3E0900BC08FA /* SwiftIDEUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftIDEUtils;
+		};
+		EC8849572E8F3E0900BC08FA /* SwiftIfConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftIfConfig;
+		};
+		EC8849592E8F3E0900BC08FA /* SwiftLexicalLookup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftLexicalLookup;
+		};
+		EC88495B2E8F3E0900BC08FA /* SwiftOperators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftOperators;
+		};
+		EC88495D2E8F3E0900BC08FA /* SwiftParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftParser;
+		};
+		EC88495F2E8F3E0900BC08FA /* SwiftParserDiagnostics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftParserDiagnostics;
+		};
+		EC8849612E8F3E0900BC08FA /* SwiftRefactor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftRefactor;
+		};
+		EC8849632E8F3E0900BC08FA /* SwiftSyntax */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntax;
+		};
+		EC8849652E8F3E0900BC08FA /* SwiftSyntaxBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxBuilder;
+		};
+		EC8849672E8F3E0900BC08FA /* SwiftSyntaxMacroExpansion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxMacroExpansion;
+		};
+		EC8849692E8F3E0900BC08FA /* SwiftSyntaxMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxMacros;
+		};
+		EC88496B2E8F3E0900BC08FA /* SwiftSyntaxMacrosGenericTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxMacrosGenericTestSupport;
+		};
+		EC88496D2E8F3E0900BC08FA /* SwiftSyntaxMacrosTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxMacrosTestSupport;
+		};
+		EC88496F2E8F3E0900BC08FA /* _SwiftCompilerPluginMessageHandling */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = _SwiftCompilerPluginMessageHandling;
+		};
+		EC8849712E8F3E0900BC08FA /* _SwiftLibraryPluginProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC88494E2E8F3E0900BC08FA /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = _SwiftLibraryPluginProvider;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EC60CB2B2E878EAF00B065F9 /* Project object */;
 }
